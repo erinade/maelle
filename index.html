@@ -5,87 +5,127 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Exclusive Invitation</title>
 <style>
-    /* Reset default styles */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+  * { margin:0; padding:0; box-sizing:border-box; }
 
-    body, html {
-        height: 100%;
-        width: 100%;
-        font-family: 'Garamond', serif;
-        overflow: hidden;
-    }
+  html, body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Garamond', serif;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f3e0b3; /* parchment base */
+    position: relative;
+  }
 
-    /* Container for background and overlay */
-    .background {
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%;
-        height: 100%;
-        background: url('https://static.wikia.nocookie.net/elderscrolls/images/7/7b/Dark_Brotherhood_Handprint.png') no-repeat center center;
-        background-size: contain;
-        filter: brightness(0.35); /* dims the handprint */
-        z-index: 0;
-    }
+  /* Parchment texture */
+  body::before, body::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::before { border-radius: 10px; box-shadow: inset 0 0 80px rgba(0,0,0,0.25); }
+  body::after {
+    background:
+      repeating-linear-gradient(45deg, rgba(0,0,0,0.015) 0px, rgba(0,0,0,0.015) 2px, transparent 2px, transparent 4px),
+      repeating-linear-gradient(-45deg, rgba(0,0,0,0.015) 0px, rgba(0,0,0,0.015) 2px, transparent 2px, transparent 4px);
+  }
 
-    /* Glow effect behind the text */
-    .text-overlay {
-        position: relative;
-        z-index: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: center;
-        height: 100%;
-        padding-bottom: 5%;
-        text-align: center;
-        color: #f5f5f5;
-        text-shadow: 0 0 15px rgba(255,255,255,0.2), 1px 1px 4px rgba(0,0,0,0.7);
-        opacity: 0;
-        animation: fadeIn 2s ease-in forwards 1s;
-    }
+  /* Smoke/fog */
+  .smoke {
+    position: absolute;
+    top:0; left:0;
+    width:200%; height:200%;
+    background: radial-gradient(rgba(255,255,255,0.05), transparent 60%);
+    animation: moveSmoke 60s linear infinite;
+    z-index:1;
+    pointer-events:none;
+  }
+  @keyframes moveSmoke { from { transform: translate(0,0); } to { transform: translate(-50%, -50%); } }
 
-    .text-overlay p {
-        font-size: clamp(0.9rem, 2vw, 1.2rem);
-        line-height: 1.5;
-        letter-spacing: 0.5px;
-        max-width: 600px;
-    }
+  /* Red glow behind hand */
+  .glow {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%; max-width: 600px;
+    border-radius: 50%;
+    filter: blur(50px);
+    background-color: rgba(200,0,0,0.4);
+    animation: flicker 2s infinite alternate;
+    z-index:2;
+  }
+  @keyframes flicker {
+    0% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+    25% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.02); }
+    50% { opacity: 0.35; transform: translate(-50%, -50%) scale(0.98); }
+    75% { opacity: 0.45; transform: translate(-50%, -50%) scale(1.01); }
+    100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+  }
 
-    .text-overlay a {
-        color: #f5f5f5;
-        text-decoration: underline;
-    }
+  /* Handprint */
+  .handprint {
+    position: absolute;
+    top:50%; left:50%;
+    transform: translate(-50%, -50%);
+    width: 60%; max-width:600px;
+    opacity:0.85;
+    z-index:3;
+  }
 
-    @keyframes fadeIn {
-        to { opacity: 1; }
-    }
+  /* Invitation text - darker background for better readability */
+  .invitation {
+    position: absolute;
+    bottom: 5%;
+    z-index:4;
+    max-width:600px;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    color: black;
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-weight: bold;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    border: 2px solid #f3e0b3; /* parchment-colored border */
+    border-radius: 6px;
+    background-color: rgba(243,224,179,0.25); /* slightly darker, more readable */
+  }
 
-    /* Ensure background scales nicely on small screens */
-    @media (max-height: 600px) {
-        .background {
-            background-size: 80% auto;
-        }
-    }
+  .invitation a {
+    color: black;
+    font-weight: bold;
+    text-decoration: underline;
+  }
 
-    @media (max-width: 400px) {
-        .text-overlay p {
-            font-size: 0.85rem;
-        }
+  /* Mobile optimization */
+  @media (max-width:600px) {
+    .invitation {
+      bottom: 3%;
+      font-size: clamp(0.95rem, 4vw, 1.2rem);
+      padding: 0.4rem 0.8rem;
     }
+    .handprint, .glow { width:85%; }
+  }
+
 </style>
 </head>
 <body>
-    <div class="background"></div>
-    <div class="text-overlay">
-        <p>
-            You and your family are cordially invited to a special event.<br>
-            Kindly confirm your attendance at 
-            <a href="mailto:your-email@example.com">your-email@example.com</a>.
-        </p>
-    </div>
+
+<div class="smoke"></div>
+<div class="glow"></div>
+<img src="hand.png" alt="Dark Brotherhood Handprint" class="handprint">
+
+<div class="invitation">
+  <p>
+    You and your family are cordially invited to a special event.<br>
+    Kindly confirm your attendance at 
+    <a href="mailto:your-email@example.com">your-email@example.com</a>.
+  </p>
+</div>
+
 </body>
 </html>
