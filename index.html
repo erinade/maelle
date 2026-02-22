@@ -67,17 +67,18 @@
     100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
   }
 
-  /* Handprint */
+  /* Handprint moved up 15% */
   .handprint {
     position: absolute;
-    top:50%; left:50%;
+    top: 35%;
+    left:50%;
     transform: translate(-50%, -50%);
     width: 60%; max-width:600px;
     opacity:0.85;
     z-index:3;
   }
 
-  /* Invitation text - darker background for better readability */
+  /* Invitation text */
   .invitation {
     position: absolute;
     bottom: 5%;
@@ -90,9 +91,9 @@
     font-weight: bold;
     line-height: 1.5;
     letter-spacing: 0.5px;
-    border: 2px solid #f3e0b3; /* parchment-colored border */
+    border: 2px solid #f3e0b3;
     border-radius: 6px;
-    background-color: rgba(243,224,179,0.25); /* slightly darker, more readable */
+    background-color: rgba(243,224,179,0.25);
   }
 
   .invitation a {
@@ -117,13 +118,14 @@
 
 <div class="smoke"></div>
 <div class="glow"></div>
-<img src="hand.png" alt="Dark Brotherhood Handprint" class="handprint">
+<img src="hand.png" alt="Exclusive Handprint" class="handprint">
 
 <div class="invitation">
   <p>
-    You and your family are cordially invited to a special event.<br>
-    Kindly confirm your attendance at 
-    <a href="mailto:your-email@example.com">your-email@example.com</a>.
+    You are cordially invited to an <strong>exclusive gathering</strong> in celebration of <strong>Maelle Rose Nadeau</strong>.<br>
+    Join us at the <strong>Smith Tower Observatory</strong> on <strong>4/12 at 1 PM</strong>.<br>
+    Kindly confirm your attendance with Eric.<br>
+    <em>Admission, drinks, and food are provided for all invited guests.</em>
   </p>
 </div>
 
