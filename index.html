@@ -17,7 +17,7 @@
     height: 100%;
     font-family: Garamond, Georgia, serif;
     overflow: hidden;
-    background: #f3e0b3; /* parchment base */
+    background: #f3e0b3;
   }
 
   body {
@@ -40,20 +40,8 @@
 
   body::after {
     background:
-      repeating-linear-gradient(
-        45deg,
-        rgba(0,0,0,0.015) 0px,
-        rgba(0,0,0,0.015) 2px,
-        transparent 2px,
-        transparent 4px
-      ),
-      repeating-linear-gradient(
-        -45deg,
-        rgba(0,0,0,0.015) 0px,
-        rgba(0,0,0,0.015) 2px,
-        transparent 2px,
-        transparent 4px
-      );
+      repeating-linear-gradient(45deg, rgba(0,0,0,0.015) 0px, rgba(0,0,0,0.015) 2px, transparent 2px, transparent 4px),
+      repeating-linear-gradient(-45deg, rgba(0,0,0,0.015) 0px, rgba(0,0,0,0.015) 2px, transparent 2px, transparent 4px);
   }
 
   /* Ambient smoke */
@@ -70,7 +58,7 @@
     to   { transform: translate(25%, 25%); }
   }
 
-  /* STRONGER red glow behind hand */
+  /* Toned-back red glow */
   .glow {
     position: absolute;
     top: 35%;
@@ -80,17 +68,17 @@
     max-width: 650px;
     height: 65%;
     max-height: 650px;
-    background: rgba(150, 0, 0, 0.6); /* deeper, more pungent red */
-    filter: blur(40px);              /* tighter blur = more intensity */
+    background: rgba(140, 0, 0, 0.45); /* softer red */
+    filter: blur(48px);               /* slightly wider blur */
     border-radius: 50%;
-    animation: flicker 2.2s infinite alternate;
+    animation: flicker 3s infinite alternate;
     z-index: 2;
   }
 
   @keyframes flicker {
-    0%   { opacity: 0.45; }
-    50%  { opacity: 0.7; }
-    100% { opacity: 0.5; }
+    0%   { opacity: 0.38; }
+    50%  { opacity: 0.55; }
+    100% { opacity: 0.42; }
   }
 
   /* Handprint */
@@ -141,24 +129,20 @@
     opacity: 0.85;
   }
 
-  /* ===== MOBILE LAYOUT ===== */
+  /* Mobile layout */
   @media (max-width: 600px) {
-
-    /* Make the hand dominate the top half */
     .handprint {
       top: 28%;
       width: 90%;
-      max-width: none;
     }
 
     .glow {
       top: 28%;
       width: 95%;
       height: 95%;
-      filter: blur(38px);
+      filter: blur(50px);
     }
 
-    /* Constrain text height so it doesn't fill screen */
     .invitation {
       bottom: 2%;
       max-width: 92%;
