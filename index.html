@@ -1,8 +1,91 @@
 <!DOCTYPE html>
-<html>
-  <head><title>My Event</title></head>
-  <body>
-    <h1>Welcome!</h1>
-    <p>Party at 7pm 🎉</p>
-  </body>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exclusive Invitation</title>
+<style>
+    /* Reset default styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body, html {
+        height: 100%;
+        width: 100%;
+        font-family: 'Garamond', serif;
+        overflow: hidden;
+    }
+
+    /* Container for background and overlay */
+    .background {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('https://static.wikia.nocookie.net/elderscrolls/images/7/7b/Dark_Brotherhood_Handprint.png') no-repeat center center;
+        background-size: contain;
+        filter: brightness(0.35); /* dims the handprint */
+        z-index: 0;
+    }
+
+    /* Glow effect behind the text */
+    .text-overlay {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        height: 100%;
+        padding-bottom: 5%;
+        text-align: center;
+        color: #f5f5f5;
+        text-shadow: 0 0 15px rgba(255,255,255,0.2), 1px 1px 4px rgba(0,0,0,0.7);
+        opacity: 0;
+        animation: fadeIn 2s ease-in forwards 1s;
+    }
+
+    .text-overlay p {
+        font-size: clamp(0.9rem, 2vw, 1.2rem);
+        line-height: 1.5;
+        letter-spacing: 0.5px;
+        max-width: 600px;
+    }
+
+    .text-overlay a {
+        color: #f5f5f5;
+        text-decoration: underline;
+    }
+
+    @keyframes fadeIn {
+        to { opacity: 1; }
+    }
+
+    /* Ensure background scales nicely on small screens */
+    @media (max-height: 600px) {
+        .background {
+            background-size: 80% auto;
+        }
+    }
+
+    @media (max-width: 400px) {
+        .text-overlay p {
+            font-size: 0.85rem;
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="text-overlay">
+        <p>
+            You and your family are cordially invited to a special event.<br>
+            Kindly confirm your attendance at 
+            <a href="mailto:your-email@example.com">your-email@example.com</a>.
+        </p>
+    </div>
+</body>
 </html>
