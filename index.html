@@ -60,7 +60,7 @@
   .smoke {
     position: absolute;
     inset: -50%;
-    background: radial-gradient(rgba(255,255,255,0.05), transparent 60%);
+    background: radial-gradient(rgba(255,255,255,0.04), transparent 60%);
     animation: drift 60s linear infinite;
     z-index: 1;
   }
@@ -70,7 +70,7 @@
     to   { transform: translate(25%, 25%); }
   }
 
-  /* Subtle red glow behind hand */
+  /* STRONGER red glow behind hand */
   .glow {
     position: absolute;
     top: 35%;
@@ -80,32 +80,32 @@
     max-width: 650px;
     height: 65%;
     max-height: 650px;
-    background: rgba(180, 0, 0, 0.35);
-    filter: blur(55px);
+    background: rgba(150, 0, 0, 0.6); /* deeper, more pungent red */
+    filter: blur(40px);              /* tighter blur = more intensity */
     border-radius: 50%;
-    animation: flicker 2.5s infinite alternate;
+    animation: flicker 2.2s infinite alternate;
     z-index: 2;
   }
 
   @keyframes flicker {
-    0%   { opacity: 0.28; }
-    50%  { opacity: 0.45; }
-    100% { opacity: 0.3; }
+    0%   { opacity: 0.45; }
+    50%  { opacity: 0.7; }
+    100% { opacity: 0.5; }
   }
 
   /* Handprint */
   .handprint {
     position: absolute;
-    top: 35%; /* moved up ~15% */
+    top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 60%;
     max-width: 600px;
-    opacity: 0.85;
+    opacity: 0.9;
     z-index: 3;
   }
 
-  /* Invitation text block */
+  /* Invitation text */
   .invitation {
     position: absolute;
     bottom: 5%;
@@ -141,21 +141,29 @@
     opacity: 0.85;
   }
 
-  /* Mobile optimization */
+  /* ===== MOBILE LAYOUT ===== */
   @media (max-width: 600px) {
+
+    /* Make the hand dominate the top half */
     .handprint {
-      width: 85%;
+      top: 28%;
+      width: 90%;
+      max-width: none;
     }
 
     .glow {
-      width: 90%;
-      height: 90%;
+      top: 28%;
+      width: 95%;
+      height: 95%;
+      filter: blur(38px);
     }
 
+    /* Constrain text height so it doesn't fill screen */
     .invitation {
-      bottom: 3%;
-      font-size: clamp(0.95rem, 4vw, 1.2rem);
-      padding: 0.5rem 1rem;
+      bottom: 2%;
+      max-width: 92%;
+      font-size: clamp(0.95rem, 4vw, 1.15rem);
+      padding: 0.5rem 0.9rem;
     }
   }
 </style>
@@ -180,7 +188,8 @@
         506 2nd Ave, Seattle, Washington
       </span>
 
-      Kindly confirm your attendance with Eric.
+      Kindly confirm your attendance via
+      <a href="mailto:your-email@example.com">your-email@example.com</a>.
 
       <em style="display:block; margin-top:0.3em;">
         Admission, drinks, and food are provided for all invited guests.
