@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Welcome Maelle</title>
+<title>Exclusive Invitation</title>
 
 <style>
   * {
@@ -58,7 +58,7 @@
     to   { transform: translate(25%, 25%); }
   }
 
-  /* Toned-back red glow */
+  /* Red glow (dialed in) */
   .glow {
     position: absolute;
     top: 35%;
@@ -68,8 +68,8 @@
     max-width: 650px;
     height: 65%;
     max-height: 650px;
-    background: rgba(140, 0, 0, 0.45); /* softer red */
-    filter: blur(48px);               /* slightly wider blur */
+    background: rgba(140, 0, 0, 0.45);
+    filter: blur(48px);
     border-radius: 50%;
     animation: flicker 3s infinite alternate;
     z-index: 2;
@@ -129,22 +129,24 @@
     opacity: 0.85;
   }
 
-  /* Mobile layout */
+  /* ===== MOBILE PORTRAIT TUNING ===== */
   @media (max-width: 600px) {
+
+    /* Move hand slightly higher to reveal more of it */
     .handprint {
-      top: 28%;
+      top: 24%;
       width: 90%;
     }
 
     .glow {
-      top: 28%;
+      top: 24%;
       width: 95%;
       height: 95%;
-      filter: blur(50px);
     }
 
+    /* Push text down just a bit */
     .invitation {
-      bottom: 2%;
+      bottom: 1.5%;
       max-width: 92%;
       font-size: clamp(0.95rem, 4vw, 1.15rem);
       padding: 0.5rem 0.9rem;
@@ -172,8 +174,7 @@
         506 2nd Ave, Seattle, Washington
       </span>
 
-      Kindly confirm your attendance via
-      <a href="mailto:your-email@example.com">your-email@example.com</a>.
+      Kindly confirm your attendance with Eric.
 
       <em style="display:block; margin-top:0.3em;">
         Admission, drinks, and food are provided for all invited guests.
