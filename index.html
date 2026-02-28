@@ -1,186 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Exclusive Invitation</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exclusive Invitation — Maelle</title>
 
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  <style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { height:100%; font-family: Garamond, Georgia, serif; background:#f3e0b3; overflow-x: hidden; }
+    /* book becomes a vertical scroll container with snap */
+  .book { height:100vh; width:100%; overflow-y:auto; overflow-x:hidden; scroll-snap-type: y mandatory; -webkit-overflow-scrolling: touch; perspective:1200px; }
 
-  html, body {
-    width: 100%;
-    height: 100%;
-    font-family: Garamond, Georgia, serif;
-    overflow: hidden;
-    background: #f3e0b3;
-  }
+    /* page basics (flow layout, stacked vertically) */
+    .page { position:relative; min-height:100vh; scroll-snap-align:start; display:flex; align-items:center; justify-content:center; padding:1.2rem; transition: transform 600ms cubic-bezier(.2,.9,.2,1), opacity 400ms ease; transform-origin: bottom center; }
 
-  body {
-    position: relative;
-  }
+  /* (fold animation removed to avoid flip/back-forth visual) */
 
-  /* Parchment texture */
-  body::before,
-  body::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-  }
+    /* subtle page styling to keep parchment look */
+    .page .panel { width:100%; max-width:900px; background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); border: 2px solid rgba(243,224,179,0.6); border-radius:6px; padding:1rem; text-align:center; box-shadow: 0 8px 30px rgba(0,0,0,0.12); margin: 0 auto; color: #000; }
 
-  body::before {
-    box-shadow: inset 0 0 90px rgba(0,0,0,0.25);
-  }
-
-  body::after {
-    background:
-      repeating-linear-gradient(45deg, rgba(0,0,0,0.015) 0px, rgba(0,0,0,0.015) 2px, transparent 2px, transparent 4px),
-      repeating-linear-gradient(-45deg, rgba(0,0,0,0.015) 0px, rgba(0,0,0,0.015) 2px, transparent 2px, transparent 4px);
-  }
-
-  /* Ambient smoke */
-  .smoke {
-    position: absolute;
-    inset: -50%;
-    background: radial-gradient(rgba(255,255,255,0.04), transparent 60%);
-    animation: drift 60s linear infinite;
-    z-index: 1;
-  }
-
-  @keyframes drift {
-    from { transform: translate(0, 0); }
-    to   { transform: translate(25%, 25%); }
-  }
-
-  /* Red glow (dialed in) */
-  .glow {
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 65%;
-    max-width: 650px;
-    height: 65%;
-    max-height: 650px;
-    background: rgba(140, 0, 0, 0.45);
-    filter: blur(48px);
-    border-radius: 50%;
-    animation: flicker 3s infinite alternate;
-    z-index: 2;
-  }
-
-  @keyframes flicker {
-    0%   { opacity: 0.38; }
-    50%  { opacity: 0.55; }
-    100% { opacity: 0.42; }
-  }
-
-  /* Handprint */
-  .handprint {
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60%;
-    max-width: 600px;
-    opacity: 0.9;
-    z-index: 3;
-  }
-
-  /* Invitation text */
-  .invitation {
-    position: absolute;
-    bottom: 5%;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 4;
-
-    max-width: 620px;
-    padding: 0.6rem 1.2rem;
-
-    text-align: center;
-    color: #000;
-    font-size: clamp(1rem, 2.5vw, 1.3rem);
-    font-weight: bold;
-    line-height: 1.5;
-    letter-spacing: 0.5px;
-
-    background-color: rgba(243,224,179,0.22);
-    border: 2px solid #f3e0b3;
-    border-radius: 6px;
-  }
-
-  .invitation a {
-    color: #000;
-    font-weight: bold;
-    text-decoration: underline;
-  }
-
-  .address {
-    display: block;
-    font-size: 0.9em;
-    margin-top: 0.2em;
-    opacity: 0.85;
-  }
-
-  /* ===== MOBILE PORTRAIT TUNING ===== */
-  @media (max-width: 600px) {
-
-    /* Move hand slightly higher to reveal more of it */
-    .handprint {
-      top: 24%;
-      width: 90%;
+    /* parchment ambient layers */
+    .parchment::before, .parchment::after {
+      content:""; position:absolute; inset:0; pointer-events:none; z-index:-1;
     }
+    .parchment::before { box-shadow: inset 0 0 90px rgba(0,0,0,0.25); }
+    .parchment::after { background: repeating-linear-gradient(45deg, rgba(0,0,0,0.015) 0 2px, transparent 2px 4px), repeating-linear-gradient(-45deg, rgba(0,0,0,0.015) 0 2px, transparent 2px 4px); }
 
-    .glow {
-      top: 24%;
-      width: 95%;
-      height: 95%;
-    }
+  /* decorative smoke & glow — placed on top of the book for first page effect */
+  .smoke, .glow { position:absolute; inset:0; pointer-events:none; }
+  .smoke { inset:-50%; background: radial-gradient(rgba(255,255,255,0.04), transparent 60%); animation: drift 60s linear infinite; z-index:2; }
+    @keyframes drift { from{transform:translate(0,0)} to{transform:translate(25%,25%)} }
+    .glow { top:15%; left:50%; transform:translateX(-50%); width:70%; max-width:700px; height:70%; max-height:700px; background: rgba(140,0,0,0.45); filter: blur(48px); border-radius:50%; animation:flicker 3s infinite alternate; z-index:3; }
+    @keyframes flicker { 0%{opacity:.38}50%{opacity:.55}100%{opacity:.42} }
 
-    /* Push text down just a bit */
-    .invitation {
-      bottom: 1.5%;
-      max-width: 92%;
-      font-size: clamp(0.95rem, 4vw, 1.15rem);
-      padding: 0.5rem 0.9rem;
-    }
+    /* hand graphic tuned for first page */
+    .handwrap { position:relative; display:flex; align-items:center; justify-content:center; }
+    .handprint { width:60%; max-width:600px; opacity:.95; user-select:none; }
+
+  /* invitation text */
+  .invitation { margin-top:1rem; font-size:clamp(1rem, 2.5vw, 1.2rem); font-weight:400; line-height:1.4; text-align:center; }
+  .invitation .pretext { font-style:italic; font-size:clamp(.95rem,2.2vw,1.05rem); opacity:.95; margin-bottom:.45rem; }
+  .invitation .footnote { margin-top:.35rem; }
+  .panel p { margin:0 0 .6rem; }
+  .panel strong { font-weight:600; }
+  .invitation .name { display:block; font-size: clamp(1.6rem, 6vw, 2.6rem); font-weight:700; letter-spacing:0.6px; margin-top:0.25rem; color:#000; }
+  /* date used across pages (tighter when following a venue heading) */
+  .invitation .date { margin-top:0.25rem; font-size:clamp(.92rem,2.2vw,1.02rem); opacity:0.92; font-variant: small-caps; display:block; }
+  .venue { font-size: clamp(1.15rem, 3.6vw, 1.9rem); font-weight:700; margin:0 0 .12rem; }
+  .address { display:block; font-size:0.98rem; margin-top:0.12rem; opacity:.88; font-weight:normal; }
+  .venue { font-size: clamp(1.15rem, 3.6vw, 1.9rem); font-weight:700; margin:0 0 .25rem; }
+  .venue-desc {
+    margin-top:1.4rem;
+    font-size:clamp(1rem,2.8vw,1.08rem);
+    font-weight:500;
+    color:rgba(0,0,0,0.95);
+    line-height:1.45;
+    max-width:760px;
+    margin-left:auto;
+    margin-right:auto;
+    padding-left:.8rem;
+    border-left:3px solid rgba(210,175,105,0.45);
+    background: rgba(255,250,240,0.02);
+    border-radius:4px;
   }
-</style>
+
+  /* location preview image with antique frame */
+  .location-figure { margin:0 0 1rem 0; display:block; max-width:900px; width:100%; overflow:hidden; border-radius:10px; box-shadow: 0 10px 30px rgba(0,0,0,0.12), inset 0 0 40px rgba(255,240,220,0.06); border:4px solid rgba(210,175,105,0.55); background: linear-gradient(180deg, rgba(255,250,240,0.03), rgba(255,255,255,0)); }
+  .location-img { width:100%; height:auto; display:block; object-fit:cover; filter: sepia(.18) contrast(1.03) saturate(.9); -webkit-user-drag: none; }
+  .invitation .small { font-size:clamp(.9rem,2.2vw,.98rem); opacity:.9; margin-top:.35rem; }
+  .invitation .subsection { margin-top:0.8rem; border-top:1px solid rgba(0,0,0,0.04); padding-top:0.6rem; font-size:clamp(.95rem,2.2vw,1rem); text-align:center; }
+
+  /* add-page button */
+  .controls { position:fixed; right:1rem; bottom:1rem; z-index:60; display:flex; gap:.5rem; }
+    .btn { background:#fff; border:1px solid rgba(0,0,0,0.08); padding:.5rem .7rem; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.12); cursor:pointer; }
+
+    /* simple pager dots */
+    .dots { position:fixed; left:1rem; bottom:1rem; z-index:60; display:flex; gap:.45rem; }
+    .dot { width:10px; height:10px; background:rgba(0,0,0,0.12); border-radius:50%; }
+    .dot.active { background:rgba(0,0,0,0.6); }
+
+    /* chevron hint to show there is more content below */
+    .chevron {
+      position:fixed; left:50%; transform:translateX(-50%); bottom:2.4rem; z-index:60; opacity:.95;
+      display:flex; align-items:center; justify-content:center; pointer-events:none;
+      animation: bounce 1.6s infinite;
+    }
+    .chev { width:28px; height:28px; border-left:3px solid rgba(0,0,0,0.6); border-bottom:3px solid rgba(0,0,0,0.6); transform:rotate(-45deg); margin-top:6px; }
+    @keyframes bounce { 0%{transform:translate(-50%,0)} 50%{transform:translate(-50%,6px)} 100%{transform:translate(-50%,0)} }
+
+    /* mobile tuning */
+    @media (max-width:600px) {
+      .handprint { width:90%; }
+      .glow { top:10%; width:95%; height:95%; }
+      .page .panel { padding:.8rem; }
+      .invitation { font-size:clamp(.95rem,4vw,1.1rem); }
+      .controls { right:.6rem; bottom:.6rem; }
+    }
+  </style>
 </head>
-
 <body>
 
-  <div class="smoke"></div>
-  <div class="glow"></div>
+  <div class="book" id="book">
+    <div class="smoke"></div>
+    <div class="glow"></div>
 
-  <img src="hand.png" alt="Exclusive Handprint" class="handprint">
+    <!-- Page 1 (hand + first invitation) -->
+    <section class="page current" data-index="0">
+      <div class="panel parchment">
+        <div class="handwrap">
+          <img src="hand.png" alt="Exclusive Handprint" class="handprint">
+        </div>
+            <div class="invitation">
+              <div class="pretext">You are cordially invited to an exclusive gathering celebrating</div>
+              <div class="name">Maelle Rose Nadeau</div>
+              <div class="date">Sat — Sun · April 11–12, 2026</div>
+            </div>
+      </div>
+    </section>
 
-  <!-- <div class="invitation">
-    <p>
-      You are cordially invited to an <strong>exclusive gathering</strong> in celebration of
-      <strong>Maelle Rose Nadeau</strong>.<br>
+    <!-- Page 2 (address / details) -->
+    <section class="page hidden-below" data-index="1">
+      <div class="panel parchment">
+        <div class="invitation">
+          <figure class="location-figure">
+            <img src="smith.png" alt="Smith Tower Observatory" class="location-img">
+          </figure>
+          <h2 class="venue">Smith Tower Observatory</h2>
+          <div class="date">Sun · April 12, 2026 · 1:00–5:00 PM</div>
+          <div class="address">506 2nd Ave, Seattle, Washington</div>
+          <div class="venue-desc">Set within Seattle’s first skyscraper — the tallest building in the world when completed in 1914 — please join us for a relaxed, casual celebration for Maelle on the 35th floor, in the historic Chinese Room.</div>
+          <div class="pretext footnote">Admission, drinks, and food are provided for all invited guests.</div>
+          <div class="pretext small">Smith Tower historical museum walkthrough included.</div>
 
-      <strong>Smith Tower Observatory</strong><br>
-      4/12 · 1:00 PM
+          <div class="subsection">
+            <div><strong>Getting there</strong></div>
+            <div class="small">Smith Tower is a short walk from Pioneer Square and University Street stations. Rideshare drop-offs available on 2nd Ave.</div>
+            <div style="height:.45rem"></div>
+            <div><strong>Parking</strong></div>
+            <div class="small">Recommended: Butler Garage — 114 James St, Seattle, WA 98104 (short walk to Smith Tower).</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <span class="address">
-        506 2nd Ave, Seattle, Washington
-      </span>
+    <!-- extra pages will be appended here by JS when user adds pages -->
+  </div>
 
-      Kindly confirm your attendance with Eric.
+  <!-- Add page control removed -->
 
-      <em style="display:block; margin-top:0.3em;">
-        Admission, drinks, and food are provided for all invited guests.
-      </em>
-    </p>
-  </div> -->
+  <div class="dots" id="dots"></div>
+
+  <script>
+    // Scroll-snap behavior: detect active section, show pager dots, and a chevron hint.
+    (function(){
+      const book = document.getElementById('book');
+      let pages = Array.from(book.querySelectorAll('.page'));
+  const dots = document.getElementById('dots');
+      let activeIndex = 0;
+      let chevronTimeout;
+
+      // insert chevron hint
+      const chevWrap = document.createElement('div'); chevWrap.className = 'chevron'; chevWrap.innerHTML = '<div class="chev"></div>';
+      document.body.appendChild(chevWrap);
+
+      function renderDots(){
+        dots.innerHTML = '';
+        pages.forEach((p,i)=>{
+          const d = document.createElement('div'); d.className='dot'+(i===activeIndex?(' active'):''); d.addEventListener('click', ()=> pages[i].scrollIntoView({behavior:'smooth'})); dots.appendChild(d);
+        });
+      }
+
+      function refreshPages(){ pages = Array.from(book.querySelectorAll('.page')); renderDots(); }
+
+      // On scroll end, detect the snapped section and update dots.
+      let isScrolling; book.addEventListener('scroll', ()=>{
+        chevWrap.style.display = 'block'; // keep chevron visible until user scrolls enough
+        window.clearTimeout(isScrolling);
+        isScrolling = setTimeout(()=>{
+          const rects = pages.map(p=>p.getBoundingClientRect());
+          // find the page whose top is nearest to 0
+          let minIdx = 0; let minVal = Infinity;
+          rects.forEach((r,i)=>{ const v = Math.abs(r.top); if(v<minVal){ minVal=v; minIdx=i; } });
+          if(minIdx!==activeIndex){
+            activeIndex = minIdx; renderDots();
+          }
+        }, 120);
+      }, {passive:true});
+
+      // hide chevron after user interacts a bit
+      function hideChevronSoon(){ clearTimeout(chevronTimeout); chevronTimeout = setTimeout(()=>{ chevWrap.style.display='none'; }, 1600); }
+      book.addEventListener('scroll', hideChevronSoon, {passive:true});
+      window.addEventListener('wheel', hideChevronSoon, {passive:true});
+
+  // add-page control removed; no dynamic page appending
+
+      // initial render
+      refreshPages();
+      // show chevron until first scroll
+      chevWrap.style.display = 'block';
+      hideChevronSoon();
+    })();
+  </script>
 
 </body>
 </html>
