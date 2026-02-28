@@ -77,6 +77,13 @@
     margin-left:auto;
     margin-right:auto;
   }
+  /* subtle link style for addresses */
+  .address a { color: inherit; text-decoration: underline dotted rgba(0,0,0,0.18); text-underline-offset:3px; cursor: pointer; }
+  .address a:hover { text-decoration-style: solid; color: rgba(0,0,0,0.95); }
+
+  /* apply the same gentle styling to links that appear inside panels (footnotes, small text, venue-desc) */
+  .panel a { color: inherit; text-decoration: underline dotted rgba(0,0,0,0.18); text-underline-offset:3px; cursor: pointer; }
+  .panel a:hover { text-decoration-style: solid; color: rgba(0,0,0,0.95); }
 
   /* location preview image with antique frame */
   .location-figure { margin:0 0 1rem 0; display:block; max-width:900px; width:100%; overflow:hidden; border-radius:10px; box-shadow: 0 10px 30px rgba(0,0,0,0.12), inset 0 0 40px rgba(255,240,220,0.06); border:4px solid rgba(210,175,105,0.55); background: linear-gradient(180deg, rgba(255,250,240,0.03), rgba(255,255,255,0)); }
@@ -141,7 +148,6 @@
           <div class="section-title">THE BABY</div>
           <h2 class="venue">Maelle Rose</h2>
           <div class="date">Born Tuesday · February 24, 2026</div>
-          <div class="address">Swedish Medical Center</div>
 
           <div class="venue-desc">
             <div class="pretext" style="font-style:italic;">Maelle (or Maëlle) — feminine, French-derived name with deep Celtic (Breton) roots, meaning “chief,” “princess,” or “noble.” Pronounced “my-el,” a popular, elegant, and melodic name in France, often associated with strength and leadership.</div>
@@ -157,12 +163,12 @@
       <div class="panel parchment">
         <div class="invitation">
           <figure class="location-figure">
-            <img src="bbq.png" alt="Welcome Picnic" class="location-img">
+            <img src="bbq.png" alt="PNW Welcome Picnic" class="location-img">
           </figure>
           <div class="section-title">THE BBQ</div>
-          <h2 class="venue">Welcome Picnic</h2>
+          <h2 class="venue">PNW Welcome Picnic</h2>
           <div class="date">Sat · April 11, 2026 · 1:00 – 6:00 PM</div>
-          <div class="address">17318 Ashworth Ave N — Shoreline</div>
+          <div class="address"><a href="https://www.google.com/maps/search/17318+Ashworth+Ave+N+Shoreline" target="_blank" rel="noopener">17318 Ashworth Ave N — Shoreline</a></div>
           <div class="venue-desc">Eric and Ali are hosting a warm welcome picnic to bring their family from Rhode Island, Massachusetts, and South Carolina together with their Washington family. With friends and familiar recipes, they'll throw a relaxed BBQ much like the Seattle gatherings they've loved for years — a friendly welcome for their east-coast relatives as they join the west-coast family.</div>
 
           <div class="subsection">
@@ -186,8 +192,8 @@
             <div class="section-title">THE BAPTISM</div>
           <h2 class="venue">St. Therese Parish</h2>
           <div class="date">Sun · April 12, 2026 · 11:00 AM–12:00 PM</div>
-          <div class="address">926 35th Ave — Madrona, Seattle</div>
-          <div class="venue-desc">Founded in 1926, St. Therese Parish in Madrona is a welcoming, diverse Catholic community with strong parishioner involvement and a long tradition of Catholic education. The parish is known for its commitment to social justice and active, engaged parish life. Alison and Eric have been especially moved by the parish’s Jesuit roots, expressed through thoughtful service and warm, gracious hospitality.</div>
+          <div class="address"><a href="https://www.google.com/maps/search/926+35th+Ave+Madrona+Seattle" target="_blank" rel="noopener">926 35th Ave — Madrona, Seattle</a></div>
+          <div class="venue-desc">Founded in 1926, St. Therese Parish in Madrona is a welcoming, diverse Catholic community known for its active parish life and pastoral outreach. Eric and Ali have resonated with the Jesuit ministry of the St. Joseph and St. Therese community; its emphasis on Jesuit values — education, social justice, and service to others — is a central reason they chose St. Therese for Maelle's baptism, and those values are evident in the community's thoughtful outreach and gracious hospitality.</div>
 
           <div class="subsection">
             <div><strong>Getting there</strong></div>
@@ -210,8 +216,8 @@
             <div class="section-title">THE RECEPTION</div>
           <h2 class="venue">Smith Tower Observatory</h2>
           <div class="date">Sun · April 12, 2026 · 1:00–5:00 PM</div>
-          <div class="address">506 2nd Ave — Pioneer Square, Seattle</div>
-          <div class="venue-desc">Set within Seattle’s first skyscraper — the fourth-tallest building in the world at its completion in 1914 and the tallest on the West Coast until 1962 — please join us for a relaxed celebration for Maelle on the 35th floor in the historic Chinese Room.</div>
+          <div class="address"><a href="https://www.google.com/maps/search/506+2nd+Ave+Seattle" target="_blank" rel="noopener">506 2nd Ave — Pioneer Square, Seattle</a></div>
+          <div class="venue-desc">Set within Seattle’s first skyscraper — the fourth-tallest building in the world at its completion in 1914 and the tallest on the West Coast until 1962 — please join us for a relaxed celebration for Maelle on the 35th floor in the historic Chinese Room. The building's preserved architecture and century-old observation deck offer a rare, panoramic window into Seattle's past, making Smith Tower an especially meaningful and atmospheric place to gather.</div>
           <div class="pretext footnote">Admission, drinks, and food are provided for all invited guests.</div>
           <div class="pretext small">Smith Tower historical museum walkthrough included.</div>
 
@@ -220,7 +226,7 @@
             <div class="small">Smith Tower is a short walk from Pioneer Square and University Street stations. Rideshare drop-offs available on 2nd Ave.</div>
             <div style="height:.45rem"></div>
             <div><strong>Parking</strong></div>
-            <div class="small">Recommended: Butler Garage — 114 James St, Seattle, WA 98104 (short walk to Smith Tower).</div>
+            <div class="small">Recommended: Butler Garage — <a href="https://www.google.com/maps/search/114+James+St+Seattle+WA+98104" target="_blank" rel="noopener">114 James St, Seattle, WA 98104</a> (short walk to Smith Tower).</div>
           </div>
         </div>
       </div>
