@@ -63,6 +63,20 @@
     background: rgba(255,250,240,0.02);
     border-radius:4px;
   }
+  .section-title {
+    display:block;
+    font-size:clamp(.78rem,1.8vw,.95rem);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    opacity:.9;
+    color:rgba(0,0,0,0.8);
+    margin-bottom:.5rem;
+    padding-bottom:.25rem;
+    border-bottom:1px solid rgba(0,0,0,0.09);
+    max-width:420px;
+    margin-left:auto;
+    margin-right:auto;
+  }
 
   /* location preview image with antique frame */
   .location-figure { margin:0 0 1rem 0; display:block; max-width:900px; width:100%; overflow:hidden; border-radius:10px; box-shadow: 0 10px 30px rgba(0,0,0,0.12), inset 0 0 40px rgba(255,240,220,0.06); border:4px solid rgba(210,175,105,0.55); background: linear-gradient(180deg, rgba(255,250,240,0.03), rgba(255,255,255,0)); }
@@ -117,18 +131,87 @@
             </div>
       </div>
     </section>
-
-    <!-- Page 2 (address / details) -->
+    <!-- Page 2 (Maelle) -->
     <section class="page hidden-below" data-index="1">
+      <div class="panel parchment">
+        <div class="invitation">
+          <figure class="location-figure">
+            <img src="maelle.png" alt="Maelle" class="location-img">
+          </figure>
+          <div class="section-title">THE BABY</div>
+          <h2 class="venue">Maelle Rose</h2>
+          <div class="date">Born Tuesday · February 24, 2026</div>
+          <div class="address">Swedish Medical Center</div>
+
+          <div class="venue-desc">
+            <div class="pretext" style="font-style:italic;">Maelle (or Maëlle) — feminine, French-derived name with deep Celtic (Breton) roots, meaning “chief,” “princess,” or “noble.” Pronounced “my-el,” a popular, elegant, and melodic name in France, often associated with strength and leadership.</div>
+            <div style="height:.5rem"></div>
+            <div class="small">Maelle arrived at Swedish Medical Center — which, amusingly, is also where Ali works. Few people can claim to have been born at their parent's workplace, but it happens once in a while. She doesn't have many opinions yet, though she's likely to appreciate what Mom and Dad love: great food, exploring the world, and enjoying life. Inspired by the 2026 Winter Olympics and Eric & Ali's shared fondness for skiing and shooting guns, they jokingly predict Maelle may one day be a Biathlete.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Page 3 (THE BBQ: A Welcome Picnic) -->
+    <section class="page hidden-below" data-index="2">
+      <div class="panel parchment">
+        <div class="invitation">
+          <figure class="location-figure">
+            <img src="bbq.png" alt="Welcome Picnic" class="location-img">
+          </figure>
+          <div class="section-title">THE BBQ</div>
+          <h2 class="venue">Welcome Picnic</h2>
+          <div class="date">Sat · April 11, 2026 · 1:00 – 6:00 PM</div>
+          <div class="address">17318 Ashworth Ave N — Shoreline</div>
+          <div class="venue-desc">Eric and Ali are hosting a warm welcome picnic to bring their family from Rhode Island, Massachusetts, and South Carolina together with their Washington family. With friends and familiar recipes, they'll throw a relaxed BBQ much like the Seattle gatherings they've loved for years — a friendly welcome for their east-coast relatives as they join the west-coast family.</div>
+
+          <div class="subsection">
+            <div><strong>Getting there</strong></div>
+            <div class="small">Easily reached by car; follow local arterial routes toward Shoreline and use the Ashworth Ave N access. Rideshare drop-offs are straightforward near the property.</div>
+            <div style="height:.45rem"></div>
+            <div><strong>Parking</strong></div>
+            <div class="small">Street parking is readily available nearby; there is no driveway space here — please leave the moving truck at home (and maybe bring a folding chair instead).</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Page 4 (Baptism at St. Therese) -->
+    <section class="page hidden-below" data-index="3">
+      <div class="panel parchment">
+        <div class="invitation">
+          <figure class="location-figure">
+            <img src="therese.jpg" alt="St. Therese Parish" class="location-img">
+          </figure>
+            <div class="section-title">THE BAPTISM</div>
+          <h2 class="venue">St. Therese Parish</h2>
+          <div class="date">Sun · April 12, 2026 · 11:00 AM–12:00 PM</div>
+          <div class="address">926 35th Ave — Madrona, Seattle</div>
+          <div class="venue-desc">Founded in 1926, St. Therese Parish in Madrona is a welcoming, diverse Catholic community with strong parishioner involvement and a long tradition of Catholic education. The parish is known for its commitment to social justice and active, engaged parish life. Alison and Eric have been especially moved by the parish’s Jesuit roots, expressed through thoughtful service and warm, gracious hospitality.</div>
+
+          <div class="subsection">
+            <div><strong>Getting there</strong></div>
+            <div class="small">St. Therese is easily reached by car or local bus; Madrona and downtown routes connect nearby. Rideshare drop-offs are available at the parish entrance.</div>
+            <div style="height:.45rem"></div>
+            <div><strong>Parking</strong></div>
+            <div class="small">Street parking is readily available nearby, and there is a free lot directly in front of the parish for guests.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <!-- Page 5 (Smith Tower address / details) -->
+  <section class="page hidden-below" data-index="4">
       <div class="panel parchment">
         <div class="invitation">
           <figure class="location-figure">
             <img src="smith.png" alt="Smith Tower Observatory" class="location-img">
           </figure>
+            <div class="section-title">THE RECEPTION</div>
           <h2 class="venue">Smith Tower Observatory</h2>
           <div class="date">Sun · April 12, 2026 · 1:00–5:00 PM</div>
-          <div class="address">506 2nd Ave, Seattle, Washington</div>
-          <div class="venue-desc">Set within Seattle’s first skyscraper — the tallest building in the world when completed in 1914 — please join us for a relaxed, casual celebration for Maelle on the 35th floor, in the historic Chinese Room.</div>
+          <div class="address">506 2nd Ave — Pioneer Square, Seattle</div>
+          <div class="venue-desc">Set within Seattle’s first skyscraper — the fourth-tallest building in the world at its completion in 1914 and the tallest on the West Coast until 1962 — please join us for a relaxed celebration for Maelle on the 35th floor in the historic Chinese Room.</div>
           <div class="pretext footnote">Admission, drinks, and food are provided for all invited guests.</div>
           <div class="pretext small">Smith Tower historical museum walkthrough included.</div>
 
